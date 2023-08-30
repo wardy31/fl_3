@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
-import { QrReader } from "react-qr-reader";
+// import { QrReader } from "react-qr-reader";
 function App() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState("No result");
@@ -9,7 +9,7 @@ function App() {
     <>
       <h1>Wardy</h1>
       <Container>
-        <QrReader
+        {/* <QrReader
           constraints={{
             facingMode: "environment",
           }}
@@ -24,7 +24,7 @@ function App() {
           }}
           style={{ width: "100%" }}
         />
-        <p>{data}</p>
+        <p>{data}</p> */}
       </Container>
     </>
   );
