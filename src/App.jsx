@@ -4,7 +4,7 @@ import { Container } from "@mui/material";
 import { QrReader } from "react-qr-reader";
 function App() {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState("No results");
+  const [data, setData] = useState("No result");
   return (
     <>
       <Container>
