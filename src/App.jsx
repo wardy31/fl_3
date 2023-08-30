@@ -9,7 +9,7 @@ function App() {
     <>
       <h1>Wardy</h1>
       <Container>
-        {/* <QrReader
+        <QrReader
           constraints={{
             facingMode: "environment",
           }}
@@ -23,7 +23,7 @@ function App() {
             }
           }}
           style={{ width: "100%" }}
-        /> */}
+        />
         <p>{data}</p>
       </Container>
     </>
