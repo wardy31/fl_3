@@ -7,6 +7,7 @@ function App() {
   const [data, setData] = useState("No result");
   return (
     <>
+      <h1>Wardy</h1>
       <Container>
         <QrReader
           constraints={{
