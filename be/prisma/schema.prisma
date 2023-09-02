@@ -9,3 +9,11 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Reciept{
+  id Int @id @default(autoincrement())
+  code String
+  image_path String?
+
+  @@map("reciepts")
+}
