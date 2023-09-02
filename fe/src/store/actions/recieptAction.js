@@ -33,7 +33,7 @@ const slice = createSlice({
       return {
         ...state,
         [payload.type]: {
-          ...state[payload.type],
+          ...state[payload.typeo],
           loading: payload.data,
         },
       };

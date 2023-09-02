@@ -29,7 +29,11 @@ router.use((req, res, next) => {
 });
 
 router.get("/get", async (req, res) => {
-  const result = await prisma.reciept.findMany();
+  const result = await prisma.reciept.findMany({
+    orderBy:{
+      id:"desc"
+    }
+  });
   res.json(result);
 });
 

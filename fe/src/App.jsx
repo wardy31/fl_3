@@ -94,7 +94,87 @@ function App() {
   console.log(qrResult.length);
 
   if (!reciepts?.length) {
-    return <></>;
+    return (
+      <>
+        <Container>
+          <ViewDialog
+            handleView={handleView}
+            viewData={viewData}
+            codeData={codeData}
+          ></ViewDialog>
+          <DeletDialog
+            handleDeleteModal={handleDeleteModal}
+            deleteData={deleteData}
+            codeData={codeData}
+          ></DeletDialog>
+          <ModalDialog openModal={openModal} handleModal={handleModal} />
+          <Grid container sx={{ width: "50%", mx: "auto" }}>
+            <Grid item xs={12} justifyContent="center">
+              <Qr openQr={openQr} handleQr={handleQr} handleStop={handleStop} />
+            </Grid>
+          </Grid>
+          <Box sx={{ display: "flex", my: 2 }}>
+            <FormControl
+              variant="outlined"
+              fullWidth
+              focused={qrResult.trim().length ? true : false}
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Search Code Number
+              </InputLabel>
+              <OutlinedInput
+                onChange={(e) => setQrResult(e.target.value)}
+                value={qrResult}
+                variant="filled"
+                id="outlined-adornment-password"
+                type={"text"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => handleOpenQr()}
+                      // onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      <QrCodeScannerIcon color="primary" fontSize="large" />
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Search Code Number"
+              />
+            </FormControl>
+
+            <Button
+              startIcon={<AddIcon />}
+              variant="contained"
+              sx={{ ml: 2, px: 4 }}
+              onClick={() => handleModal(true)}
+            >
+              Add
+            </Button>
+          </Box>
+          <Card>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontFamily: "Poppins", fontWeight: "bold" }}>
+                    Code #
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{ fontFamily: "Poppins", fontWeight: "bold" }}
+                  >
+                    Action
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+              </TableBody>
+            </Table>
+          </Card>
+        </Container>
+      </>
+    );
   }
 
   return (
@@ -172,65 +252,71 @@ function App() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredData.length ? filteredData.map((m) => {
-                return (
-                  <TableRow key={m.id}>
-                    <TableCell sx={{ fontWeight: "bold" }}>{m?.code}</TableCell>
-                    <TableCell align="center" padding="normal">
-                      <Button
-                        startIcon={<RemoveRedEyeIcon />}
-                        sx={{ textTransform: "capitalize", mr: 2 }}
-                        onClick={() => {
-                          setViewData(true);
-                          setCodeData(m);
-                        }}
-                      >
-                        View
-                      </Button>
-                      <Button
-                        color="error"
-                        startIcon={<DeleteForeverIcon />}
-                        sx={{ textTransform: "capitalize" }}
-                        onClick={() => {
-                          setCodeData(m);
-                          setDeleteData(true);
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              }) : reciepts.map((m) => {
-                return (
-                  <TableRow key={m.id}>
-                    <TableCell sx={{ fontWeight: "bold" }}>{m?.code}</TableCell>
-                    <TableCell align="center" padding="normal">
-                      <Button
-                        startIcon={<RemoveRedEyeIcon />}
-                        sx={{ textTransform: "capitalize", mr: 2 }}
-                        onClick={() => {
-                          setViewData(true);
-                          setCodeData(m);
-                        }}
-                      >
-                        View
-                      </Button>
-                      <Button
-                        color="error"
-                        startIcon={<DeleteForeverIcon />}
-                        sx={{ textTransform: "capitalize" }}
-                        onClick={() => {
-                          setCodeData(m);
-                          setDeleteData(true);
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {filteredData.length
+                ? filteredData.map((m) => {
+                    return (
+                      <TableRow key={m.id}>
+                        <TableCell sx={{ fontWeight: "bold" }}>
+                          {m?.code}
+                        </TableCell>
+                        <TableCell align="center" padding="normal">
+                          <Button
+                            startIcon={<RemoveRedEyeIcon />}
+                            sx={{ textTransform: "capitalize", mr: 2 }}
+                            onClick={() => {
+                              setViewData(true);
+                              setCodeData(m);
+                            }}
+                          >
+                            View
+                          </Button>
+                          <Button
+                            color="error"
+                            startIcon={<DeleteForeverIcon />}
+                            sx={{ textTransform: "capitalize" }}
+                            onClick={() => {
+                              setCodeData(m);
+                              setDeleteData(true);
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
+                : reciepts.map((m) => {
+                    return (
+                      <TableRow key={m.id}>
+                        <TableCell sx={{ fontWeight: "bold" }}>
+                          {m?.code}
+                        </TableCell>
+                        <TableCell align="center" padding="normal">
+                          <Button
+                            startIcon={<RemoveRedEyeIcon />}
+                            sx={{ textTransform: "capitalize", mr: 2 }}
+                            onClick={() => {
+                              setViewData(true);
+                              setCodeData(m);
+                            }}
+                          >
+                            View
+                          </Button>
+                          <Button
+                            color="error"
+                            startIcon={<DeleteForeverIcon />}
+                            sx={{ textTransform: "capitalize" }}
+                            onClick={() => {
+                              setCodeData(m);
+                              setDeleteData(true);
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
             </TableBody>
           </Table>
         </Card>

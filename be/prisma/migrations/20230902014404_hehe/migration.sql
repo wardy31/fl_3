@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `reciepts` ADD COLUMN `createdAt` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
+    MODIFY `image_path` VARCHAR(191) NULL;

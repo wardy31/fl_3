@@ -45,7 +45,7 @@ function ViewDialog({ handleView, viewData, codeData }) {
           <img
             src={`http://localhost:4000/public/images/${codeData?.code}/1.jpg`}
             alt=""
-            srcset=""
+            // srcset=""
             height={"100%"}
             width={"100%"}
           />

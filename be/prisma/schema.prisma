@@ -14,6 +14,6 @@ model Reciept{
   id Int @id @default(autoincrement())
   code String
   image_path String?
-
+  createdAt DateTime? @default(now())
   @@map("reciepts")
 }
